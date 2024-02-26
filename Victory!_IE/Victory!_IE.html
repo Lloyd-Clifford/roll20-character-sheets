@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+    <div class="sheet-grid-section sheet-block">
+        <div class="sheet-name sheet-block">
+            <div class="sheet-name-space">
+                <label>Name</label>
+                <input class="sheet-ninput" type="text" name="attr_name">
+            </div>
+        </div>
+        <div class="sheet-player sheet-block">
+            <div class="sheet-player-space">
+                <label>Player</label>
+                <input class="sheet-pinput" type="text" name="attr_player">
+            </div>
+        </div>
+        <div class="sheet-hp sheet-block">
+            <h3>HP</h3>
+            <label>Wound<input type="number" name="attr_wound" min="0" max="5" value="0"></input></label>
+            <label>Stun<input type="number" name="attr_stun" min="0" max="5" value="0"></input></label>
+        </div>
+        <div class="sheet-lucky sheet-block">
+            <h3>Lucky Die</h3>
+            <label><button name="roll_luck" value="/r 1d6" type="roll"></button>Luck</label>
+            <label>Out of Luck <input type="checkbox"></label>
+        </div>
+        <div class="sheet-momentum sheet-block">
+            <h3>Momentum</h3>
+        </div>
+        <div class="sheet-complication sheet-block">
+            <h3>Complication Dice</h3>
+        </div>
+        <div class="sheet-attributes sheet-block">
+            <h3>Attributes</h3>
+            <label><button name="roll_str" value="/r 1d@{str}" type="roll"></button> STRENGTH  <input type="number" name="attr_str" min="4" max="12" value="4"></label>
+            <label><button name="roll_agl" value="/r 1d@{agl}" type="roll"></button> AGILITY   <input type="number" name="attr_agl" min="4" max="12" value="4"></label>
+            <label><button name="roll_end" value="/r 1d@{end}" type="roll"></button> ENDURANCE <input type="number" name="attr_end" min="4" max="12" value="4"></label>                
+            <label><button name="roll_int" value="/r 1d@{int}" type="roll"></button> INTELLECT <input type="number" name="attr_int" min="4" max="12" value="4"></label>
+            <label><button name="roll_pre" value="/r 1d@{pre}" type="roll"></button> PRESENCE  <input type="number" name="attr_pre" min="4" max="12" value="4"></label>
+            <label><button name="roll_for" value="/r 1d@{for}" type="roll"></button> FORTITUDE <input type="number" name="attr_for" min="4" max="12" value="4"></label>
+        </div>
+        <div class="sheet-initiative sheet-block">
+            <h3>Initiative</h3>
+            <label><button name="roll_ini" value="/r 1d@{agl}+1d@{pre} &{tracker}" type="roll"></button> Agility + Presence </label>
+        </div>
+
+        <div class="sheet-skills sheet-block"> 
+            <h3>Skills</h3>
+            <label><button name="roll_act" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d@{pre}+1d@{act}" type="roll"></button> Acting <input type="number" name="attr_act" min="0" max="12" value="0"></label>
+            <label><button name="roll_anh" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d?{Choose Attribute|Fortitude,@{for}|Presence,@{pre}}+1d@{anh}" type="roll"></button> Animal Handling <input type="number" name="attr_anh" min="0" max="12" value="0"></label>
+            <label><button name="roll_ath" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d?{Choose Attribute|Strength,@{str}|Agility,@{agl}|Endurance,@{end}}+1d@{ath}" type="roll"></button> Athletics <input type="number" name="attr_ath" min="0" max="12" value="0"></label>
+            <label><button name="roll_arl" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d@{int}+1d@{arl}" type="roll"></button> Arcane Lore <input type="number" name="attr_arl" min="0" max="12" value="0"></label>
+            <label><button name="roll_com" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d@{for}+1d@{com}" type="roll"></button> Composure <input type="number" name="attr_com" min="0" max="12" value="0"></label>                
+            <label><button name="roll_cry" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d@{int}+1d@{cry}" type="roll"></button> Cryptography <input type="number" name="attr_cry" min="0" max="12" value="0"></label>
+            <label><button name="roll_def" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d?{Choose Attribute|Strength,@{str}|Agility,@{agl}}+1d@{def}" type="roll"></button> Defense* <input type="number" name="attr_def" min="0" max="12" value="0"></label>
+            <label><button name="roll_dod" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d@{agl}+1d@{dod}" type="roll"></button> Dodge* <input type="number" name="attr_dod" min="0" max="12" value="0"></label>
+            <label><button name="roll_dri" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d?{Choose Attribute|Agility,@{agl}|Presence,@{pre}}+1d@{dri}" type="roll"></button> Driving <input type="number" name="attr_dri" min="0" max="12" value="0"></label>
+            <label><button name="roll_fig" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d?{Choose Attribute|Strength,@{str}|Agility,@{agl}}+1d@{fig}" type="roll"></button> Fighting* <input type="number" name="attr_fig" min="0" max="12" value="0"></label>                
+            <label><button name="roll_ins" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d@{pre}+1d@{ins}" type="roll"></button> Insight <input type="number" name="attr_ins" min="0" max="12" value="0"></label>
+            <label><button name="roll_inm" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d?{Choose Attribute|Strength,@{str}|Endurance,@{end}|Presence,@{pre}|Fortitude,@{for}}+1d@{inm}" type="roll"></button> Intimidation <input type="number" name="attr_inm" min="0" max="12" value="0"></label>
+            <label><button name="roll_inv" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d@{int}+1d@{inv}" type="roll"></button> Investigation <input type="number" name="attr_inv" min="0" max="12" value="0"></label>
+            <label><button name="roll_knw" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d@{int}+1d@{knw}" type="roll"></button> Knowledge <input type="number" name="attr_knw" min="0" max="12" value="0"></label>
+            <label><button name="roll_med" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d?{Choose Attribute|Agility,@{agl}|Intellect,@{int}}+1d@{med}" type="roll"></button> Medicine <input type="number" name="attr_med" min="0" max="12" value="0"></label>
+            <label><button name="roll_nav" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d@{int}+1d@{nav}" type="roll"></button> Navigation <input type="number" name="attr_nav" min="0" max="12" value="0"></label>
+            <label><button name="roll_per" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d@{pre}+1d@{per}" type="roll"></button> Perception <input type="number" name="attr_per" min="0" max="12" value="0"></label>
+            <label><button name="roll_prs" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d@{pre}+1d@{prs}" type="roll"></button> Persuasion <input type="number" name="attr_prs" min="0" max="12" value="0"></label>
+            <label><button name="roll_pil" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d?{Choose Attribute|Agility,@{agl}|Presence,@{pre}}+1d@{pil}" type="roll"></button> Piloting <input type="number" name="attr_pil" min="0" max="12" value="0"></label>
+            <label><button name="roll_ran" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d@{agl}+1d@{ran}" type="roll"></button> Ranged* <input type="number" name="attr_ran" min="0" max="12" value="0"></label>
+            <label><button name="roll_sec" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d?{Choose Attribute|Agility,@{agl}|Intellect,@{int}|Presence,@{pre}|Fortitude,@{for}}+1d@{sec}" type="roll"></button> Security <input type="number" name="attr_sec" min="0" max="12" value="0"></label>
+            <label><button name="roll_sle" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d?{Choose Attribute|Agility,@{agl}|Presence,@{pre}}+1d@{sle}" type="roll"></button> Sleight of Hand <input type="number" name="attr_sle" min="0" max="12" value="0"></label>
+            <label><button name="roll_ste" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d?{Choose Attribute|Agility,@{agl}|Fortitude,@{for}}+1d@{ste}" type="roll"></button> Stealth <input type="number" name="attr_ste" min="0" max="12" value="0"></label>
+            <label><button name="roll_sur" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d?{Choose Attribute|Intellect,@{int}|Fortitude,@{for}}+1d@{sur}" type="roll"></button> Survival <input type="number" name="attr_sur" min="0" max="12" value="0"></label>
+            <label><button name="roll_tra" value="/r 1d(2*(5-(@{wound}+@{stun})+1))+1d?{Choose Attribute|Agility,@{agl}|Intellect,@{int}|Presence,@{pre}|Fortitude,@{for}}+1d@{tra}" type="roll"></button> Tradecraft <input type="number" name="attr_tra" min="0" max="12" value="0"></label>
+            <label></label>
+        </div>
+    </div>
