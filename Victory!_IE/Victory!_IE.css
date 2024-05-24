@@ -10,6 +10,10 @@
                         "bleft skills exp             ";
 }
 
+.ui-dialog .charsheet button[type=roll]::before {
+    content: "";
+}
+
 .charsheet div.sheet-block {
     display: grid;
     justify-content: center;
