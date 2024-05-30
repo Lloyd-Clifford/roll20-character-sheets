@@ -6,8 +6,8 @@
                         "attributes skills hp         "
                         "initiative skills momentum   "
                         "lucky skills complication    "
-                        "bleft skills bright          "
-                        "bleft skills exp             ";
+                        "weapons skills stress          "
+                        "weapons skills exp             ";
 }
 
 .ui-dialog .charsheet button[type=roll]::before {
@@ -55,15 +55,16 @@
 .charsheet div.sheet-exp {
     grid-area: exp;
 }
-
+/*
 .charsheet div.sheet-bleft {
     grid-area: bleft;
 }
-
+*/
+/*
 .charsheet div.sheet-bright {
     grid-area: bright;
 }
-
+*/
 .charsheet input.sheet-ninput {
     width: 100%;
     display: flex!important;
@@ -96,6 +97,14 @@
     grid-area: complication;
 }
 
+.charsheet div.sheet-stress {
+    grid-area: stress;
+}
+
+.charsheet div.sheet-weapons {
+    grid-area: weapons;
+}
+
 .charsheet h3 {
     text-align: center;
     width: 100%;
@@ -105,7 +114,7 @@
     float: right;
 }
 
-.charsheet h3, label {
+.charsheet h3, label, button {
     text-transform: uppercase;
 }
 
@@ -166,8 +175,61 @@
     padding: 5px;
 }
 
-
 .sheet-rolltemplate-card .sheet-template-row:nth-child(odd) {
+    background-color: rgba(217, 217, 214,1);
+}
+
+.sheet-rolltemplate-attack .sheet-template-container {
+    padding: 0px;
+    width: 100%;
+    font-size: 1em;
+    border: 3px solid black;
+    border-radius: 10px;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+.sheet-rolltemplate-attack .sheetsheet-template-header {
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+    background-color: darkred;
+}
+
+.sheet-rolltemplate-attack .sheet-template-header {
+    font-size:1.2em;
+    padding: 2px;
+    text-align: center;
+    background-color: brown;
+    border-bottom: 1px solid black;
+    color: white;
+}
+
+.sheet-rolltemplate-attack .sheet-content {
+    display: grid;
+    background: #FFF;
+    width: 100%;
+    /* Header formatting - modify the column layout below */
+    grid-template-columns: auto auto;
+    /* Line height to match default roll template */
+    line-height:1.4em;
+}
+
+.sheet-rolltemplate-attack .sheet-content > div {
+    padding: 5px;
+    width: 100%;
+}
+
+.sheet-rolltemplate-attack .sheet-container {
+    background-color: white;
+    padding: 0%;
+}
+
+.sheet-rolltemplate-attack .sheet-template-row {
+    height: 100%;
+    padding: 5px;
+}
+
+.sheet-rolltemplate-attack .sheet-template-row:nth-child(odd) {
     background-color: rgba(217, 217, 214,1);
 }
 
