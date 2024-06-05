@@ -123,6 +123,37 @@
 }
 
 
+.charsheet .row {
+    display: inline-flex;
+    padding-top: 3px;
+    position: relative;
+    justify-content: center;
+    padding-left: 30px;
+    padding-bottom: 5px;
+}
+
+.charsheet .row input {
+    float: none!important;
+    height: 20px!important;
+    width: 35px!important;
+}
+
+.charsheet .row label {
+    padding: 0px 2px 0px 0px!important;
+    text-transform: none!important;
+}
+
+.charsheet .row label.button {
+    height: 10px!important;
+    margin-bottom: 5px!important;
+    font-size: 13px!important;
+}
+
+.charsheet .sheet-ranged-1 {
+    align-items: center;
+}
+
+
 
 
 .sheet-rolltemplate-card .sheet-template-container {

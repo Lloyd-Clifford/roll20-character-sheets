@@ -13,9 +13,15 @@
             </div>
         </div>
         <div class="sheet-hp sheet-block">
-            <h3>Health</h3>
+            <h3>Health & Languages</h3>
             <label>Wound<input type="number" name="attr_wound" min="0" max="5" value="0"></input></label>
             <label>Stun<input type="number" name="attr_stun" min="0" max="5" value="0"></input></label>
+
+            <label>Languages</label>
+            <div><input type="text" name="attr_lang_1" value=""></input></div>
+            <div><input type="text" name="attr_lang_2" value=""></input></div>
+            <div><input type="text" name="attr_lang_3" value=""></input></div>
+            <div><input type="text" name="attr_lang_4" value=""></input></div>
         </div>
         <div class="sheet-lucky sheet-block">
             <h3>Lucky Die</h3>
@@ -94,18 +100,15 @@
         </div>
 
         <div class="sheet-weapons sheet-block">
-            <h3>
-                Weapons
-            </h3>
             <h4>
                 Ranged
             </h4>
             <div class="sheet-ranged">
                 <div class="sheet-ranged-1">
                     <label><input type="text" name="attr_range_1_name"></label>
-                    <label>Damage: <input type="number" name="attr_range_1_nd" min="1" value="1"><input type="number" name="attr_range_1_dd" min="4" step="2" max="12" value="4">
-                    <label>Ammo: Shots:<input type="number" name="attr_range_1_shot" value="0"> Magazine:<input type="number" name="attr_range_1_clip" value="0"> Inventory: <input type="number" name="attr_range_1_res" value="0"></label> 
-                    <label>PB/S/M/L: PB<input type="number" name="attr_range_1_pb" value="0"> S<input type="number" name="attr_range_1_s" value="0"> M<input type="number" name="attr_range_1_m" value="0"> L<input type="number" name="attr_range_1_l" value="0"></label>
+                    <div class="row"><label>Dmg: </label><input type="number" name="attr_range_1_nd" min="1" value="1"><label>d</label><input type="number" name="attr_range_1_dd" min="4" step="2" max="12" value="4"></div>
+                    <div class="row"> <label>Shots:</label><input type="number" name="attr_range_1_shot" value="0"><label>Mag:</label><input type="number" name="attr_range_1_clip" value="0"> <label>Inv:</label><input type="number" name="attr_range_1_res" value="0"></div> 
+                    <div class="row"><label>PB/S/M/L:</label><input type="number" name="attr_range_1_pb" value="0"><input type="number" name="attr_range_1_s" value="0"><input type="number" name="attr_range_1_m" value="0"><input type="number" name="attr_range_1_l" value="0"></div>
                     <label>
                         <button name="roll_r1_pb" value="&{template:attack} {{title=**@{range_1_name} (Pb)**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{agl}]]}} {{skill=[[1d@{ran}]]}} {{damage=[[@{range_1_nd}d@{range_1_dd}]]}} {{bonus=[[1]]}} {{target=[[?{Target Number|0}]]}}" type="roll">PB</button>
                         <button name="roll_r1_s" value="&{template:attack} {{title=**@{range_1_name} (S)**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{agl}]]}} {{skill=[[1d@{ran}]]}} {{damage=[[@{range_1_nd}d@{range_1_dd}]]}} {{bonus=[[0]]}} {{target=[[?{Target Number|0}]]}}" type="roll">S</button>
@@ -116,15 +119,14 @@
                 
                 
             </div>
-            <h5>
+            <h4>
                 Melee
-            </h5>
+            </h4>
             <div class="sheet-melee">
-                <div class="sheet-melee-1 sheet-block">
+                <div class="sheet-melee-1">
                     <label><input type="text" name="attr_melee_1_name" value=""></label>
-                    <label>Damage: <input type="number" name="attr_melee_1_nd" min="0" value="1">d<input type="number" name="attr_melee_dd" min="4" step="2" max="12" value="4"> </label>
-                    <label> <button name="roll_melee_1" value="&{template:attack} {{title=**@{melee_1_name}**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Strength,@{str}|Agility,@{agl}}]]}} {{skill=[[1d@{fig}]]}} {{damage=[[@{melee_1_nd}d@{melee_dd}]]}} {{bonus=[[1d{Choose Damage Attribute|Agility,@{agl}|Strength,@{str}|None,0}]]}} {{target=[[?{Target Number|0}]]}}">Attack</button> </label>
-                </div>
+                    <div class="row"><label>Dmg: </label> <input type="number" name="attr_melee_1_nd" min="0" value="1"> <label>d</label><input type="number" name="attr_melee_dd" min="4" step="2" max="12" value="4"></div>
+                    <div class="row"><button name="roll_melee_1" value="&{template:attack} {{title=**@{melee_1_name}**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Strength,@{str}|Agility,@{agl}}]]}} {{skill=[[1d@{fig}]]}} {{damage=[[@{melee_1_nd}d@{melee_dd}]]}} {{bonus=[[1d?{Choose Damage Attribute|Agility,@{agl}|Strength,@{str}|None,0}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Attack</button></div>
 
             </div>
         </div>
