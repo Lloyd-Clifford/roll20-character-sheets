@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+    <div class="sheet-grid-section sheet-block">
+        <div class="sheet-name sheet-block">
+            <div class="sheet-name-space">
+                <label>Name</label>
+                <input class="sheet-ninput" type="text" name="attr_name">
+            </div>
+        </div>
+        <div class="sheet-player sheet-block">
+            <div class="sheet-player-space">
+                <label>Player</label>
+                <input class="sheet-pinput" type="text" name="attr_player">
+            </div>
+        </div>
+        <div class="sheet-hp sheet-block">
+            <h3>Health</h3>
+            <label>Wound<input type="number" name="attr_wound" min="0" max="5" value="0"></input></label>
+            <label>Stun<input type="number" name="attr_stun" min="0" max="5" value="0"></input></label>
+            <label></label>
+            <label>Stress: 1d<input type="number" name="attr_stress" min="4" max="12" value="4" step="2"></input></label>
+
+        </div>
+        <div class="sheet-lucky sheet-block">
+            <h3>Lucky Die</h3>
+            <label><button name="roll_luck" value="/r 1d6" type="roll">Luck</button></label>
+            <label>Out of Luck <input type="checkbox" name="attr_no_luck"></label>
+        </div>
+        <div class="sheet-momentum sheet-block">
+            <h3>Momentum Tokens</h3>
+            <label>Tokens:<input type="number" name="attr_momentum" min="0" max="15" value="0"></input></label>
+        </div>
+        <div class="sheet-complication sheet-block">
+            <h3>Complication Dice</h3>
+            <label>Remining Dice:<input type="number" name="attr_complication" min="0" max="6" value="6"></input></label>
+        </div>
+
+        
+        <div class="sheet-exp sheet-block">
+            <h3>Experience</h3>
+            <label>Exp:<input type="number" name="attr_exp" min="0" max="1000" value="0"></label>
+        </div>
+        <!--
+        <div class="sheet-bleft sheet-block">
+
+        </div>
+        -->
+        <!--
+        <div class="sheet-bright sheet-block">
+
+        </div>
+        -->
+        <div class="sheet-attributes sheet-block">
+            <h3>Attributes</h3>
+            <label><button name="roll_str" value="/r 1d@{str}" type="roll"> STRENGTH  </button><input id="attr-points" type="number" name="attr_str_pts" min ="0" max="8" value="0" style="display: none;"><input type="number" name="attr_str" min="4" max="12" value="4"></label>
+            <label><button name="roll_agl" value="/r 1d@{agl}" type="roll"> AGILITY   </button><input id="attr-points" type="number" name="attr_agl_pts" min ="0" max="8" value="0" style="display: none;"><input type="number" name="attr_agl" min="4" max="12" value="4"></label>
+            <label><button name="roll_end" value="/r 1d@{end}" type="roll"> ENDURANCE </button><input id="attr-points" type="number" name="attr_end_pts" min ="0" max="8" value="0" style="display: none;"><input type="number" name="attr_end" min="4" max="12" value="4"></label>                
+            <label><button name="roll_int" value="/r 1d@{int}" type="roll"> INTELLECT </button><input id="attr-points" type="number" name="attr_int_pts" min ="0" max="8" value="0" style="display: none;"><input type="number" name="attr_int" min="4" max="12" value="4"></label>
+            <label><button name="roll_pre" value="/r 1d@{pre}" type="roll"> PRESENCE  </button><input id="attr-points" type="number" name="attr_pre_pts" min ="0" max="8" value="0" style="display: none;"><input type="number" name="attr_pre" min="4" max="12" value="4"></label>
+            <label><button name="roll_for" value="/r 1d@{for}" type="roll"> FORTITUDE </button><input id="attr-points" type="number" name="attr_for_pts" min ="0" max="8" value="0" style="display: none;"><input type="number" name="attr_for" min="4" max="12" value="4"></label>
+            <label></label>
+        </div>
+        <div class="sheet-initiative sheet-block">
+            <h3>Initiative</h3>
+            <label><button name="roll_ini" value="/r 1d@{agl}+1d@{pre} &{tracker}" type="roll">Roll</button> Agility + Presence </label>
+        </div>
+        <div class="sheet-languages sheet-block">
+            <h3>Languages</h3>
+            <div><input type="text" name="attr_lang_1" value=""></input></div>
+            <div><input type="text" name="attr_lang_2" value=""></input></div>
+            <div><input type="text" name="attr_lang_3" value=""></input></div>
+            <div><input type="text" name="attr_lang_4" value=""></input></div>
+        </div>
+
+        <div class="sheet-skills sheet-block"> 
+            <h3>Skills</h3>
+            <label><button name="roll_act" value="&{template:card} {{title=**Acting**}}  {{target=[[?{Target Number|0}]]}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{pre}]]}} {{skill=[[1d@{act}]]}}" type="roll">Acting</button> <input type="number" name="attr_act" min="0" max="12" value="0"></label>
+            <label><button name="roll_anh" value="&{template:card} {{title=**Animal Handling**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Fortitude,@{for}|Presence,@{pre}}]]}} {{skill=[[1d@{anh}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Animal Handling</button>  <input type="number" name="attr_anh" min="0" max="8" value="0"></label>
+            <label><button name="roll_ath" value="&{template:card} {{title=**Athletics**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Strength,@{str}|Agility,@{agl}|Endurance,@{end}}]]}} {{skill=[[1d@{ath}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Athletics</button> <input type="number" name="attr_ath" min="0" max="12" value="0"></label>
+            <label><button name="roll_arl" value="&{template:card} {{title=**Arcane Lore**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{int}]]}} {{skill=[[1d@{arl}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Arcane Lore</button> <input type="number" name="attr_arl" min="0" max="12" value="0"></label>
+            <label><button name="roll_com" value="&{template:card} {{title=**Composure**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{for}]]}} {{skill=[[1d@{com}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Composure</button> <input type="number" name="attr_com" min="0" max="12" value="0"></label>
+            <label><button name="roll_cry" value="&{template:card} {{title=**Cryptography**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{int}]]}} {{skill=[[1d@{cry}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Cryptography</button> <input type="number" name="attr_cry" min="0" max="12" value="0"></label>
+            <label><button name="roll_def" value="&{template:card} {{title=**Defense**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Strength,@{str}|Agility,@{agl}}]]}} {{skill=[[1d@{def}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Defense*</button> <input type="number" name="attr_def" min="0" max="12" value="0"></label>
+            <label><button name="roll_dod" value="&{template:card} {{title=**Dodge**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{agl}]]}} {{skill=[[1d@{dod}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Dodge*</button> <input type="number" name="attr_dod" min="0" max="12" value="0"></label>
+            <label><button name="roll_dri" value="&{template:card} {{title=**Driving**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Agility,@{agl}|Presence,@{pre}}]]}} {{skill=[[1d@{dri}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Driving</button><input type="number" name="attr_dri" min="0" max="12" value="0"></label>
+            <label><button name="roll_fig" value="&{template:card} {{title=**Fighting**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Strength,@{str}|Agility,@{agl}}]]}} {{skill=[[1d@{fig}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Fighting*</button><input type="number" name="attr_fig" min="0" max="12" value="0"></label>                
+            <label><button name="roll_ins" value="&{template:card} {{title=**Insight**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{pre}]]}} {{skill=[[1d@{ins}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Insight</button><input type="number" name="attr_ins" min="0" max="12" value="0"></label>
+            <label><button name="roll_inm" value="&{template:card} {{title=**Intimidation**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Strength,@{str}|Endurance,@{end}|Presence,@{pre}|Fortitude,@{for}}]]}} {{skill=[[1d@{inm}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Intimidation</button><input type="number" name="attr_inm" min="0" max="12" value="0"></label>
+            <label><button name="roll_inv" value="&{template:card} {{title=**Investigation**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{int}]]}} {{skill=[[1d@{inv}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Investigation</button><input type="number" name="attr_inv" min="0" max="12" value="0"></label>
+            <label><button name="roll_knw" value="&{template:card} {{title=**Knowledge**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{int}]]}} {{skill=[[1d@{knw}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Knowledge</button><input type="number" name="attr_knw" min="0" max="12" value="0"></label>
+            <label><button name="roll_med" value="&{template:card} {{title=**Medicine**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Agility,@{agl}|Intellect,@{int}}]]}} {{skill=[[1d@{med}]]}} {{target=[[?{Target Number|0}-1]]}}" type="roll">Medicine</button><input type="number" name="attr_med" min="0" max="12" value="0"></label>
+            <label><button name="roll_nav" value="&{template:card} {{title=**Navigation**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{int}]]}} {{skill=[[1d@{nav}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Navigation</button><input type="number" name="attr_nav" min="0" max="12" value="0"></label>
+            <label><button name="roll_per" value="&{template:card} {{title=**Perception**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{pre}]]}} {{skill=[[1d@{per}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Perception</button><input type="number" name="attr_per" min="0" max="12" value="0"></label>
+            <label><button name="roll_prs" value="&{template:card} {{title=**Persuasion**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{pre}]]}} {{skill=[[1d@{prs}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Persuasion</button><input type="number" name="attr_prs" min="0" max="12" value="0"></label>
+            <label><button name="roll_pil" value="&{template:card} {{title=**Piloting**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Agility,@{agl}|Presence,@{pre}}]]}} {{skill=[[1d@{pil}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Piloting</button><input type="number" name="attr_pil" min="0" max="12" value="0"></label>
+            <label><button name="roll_ran" value="&{template:card} {{title=**Ranged**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{agl}]]}} {{skill=[[1d@{ran}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Ranged*</button><input type="number" name="attr_ran" min="0" max="12" value="0"></label>
+            <label><button name="roll_sec" value="&{template:card} {{title=**Security**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Agility,@{agl}|Intellect,@{int}|Presence,@{pre}|Fortitude,@{for}}]]}} {{skill=[[1d@{sec}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Security</button><input type="number" name="attr_sec" min="0" max="12" value="0"></label>
+            <label><button name="roll_sle" value="&{template:card} {{title=**Sleight of Hand**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Agility,@{agl}|Presence,@{pre}}]]}} {{skill=[[1d@{sle}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Sleight of Hand</button><input type="number" name="attr_sle" min="0" max="12" value="0"></label>
+            <label><button name="roll_ste" value="&{template:card} {{title=**Stealth**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Agility,@{agl}|Fortitude,@{for}}]]}} {{skill=[[1d@{ste}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Stealth</button><input type="number" name="attr_ste" min="0" max="12" value="0"></label>
+            <label><button name="roll_sur" value="&{template:card} {{title=**Survival**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Intellect,@{int}|Fortitude,@{for}}]]}} {{skill=[[1d@{sur}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Survival</button><input type="number" name="attr_sur" min="0" max="12" value="0"></label>
+            <label><button name="roll_trc" value="&{template:card} {{title=**Tradecraft**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Agility,@{agl}|Intellect,@{int}|Presence,@{pre}|Fortitude,@{for}}]]}} {{skill=[[1d@{trc}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Tradecraft</button><input type="number" name="attr_trc" min="0" max="12" value="0"></label>
+            <p class="combat">* - Denotes Combat Skill</p>
+            <label></label>
+        </div>
+
+        <div class="sheet-weapons sheet-block">
+            <h4>
+                Ranged
+            </h4>
+            <div class="sheet-ranged">
+                <div class="sheet-ranged-1">
+                    <label><input type="text" name="attr_range_1_name"></label>
+                    <div class="row"><label>Dmg: </label><input type="number" name="attr_range_1_nd" min="1" value="1"><label>d</label><input type="number" name="attr_range_1_dd" min="4" step="2" max="12" value="4"></div>
+                    <div class="row"> <label>Shots:</label><input type="number" name="attr_range_1_shot" value="0"><label>Mag:</label><input type="number" name="attr_range_1_clip" value="0"> <label>Inv:</label><input type="number" name="attr_range_1_res" value="0"></div> 
+                    <div class="row"><label>PB/S/M/L:</label><input type="number" name="attr_range_1_pb" value="0"><input type="number" name="attr_range_1_s" value="0"><input type="number" name="attr_range_1_m" value="0"><input type="number" name="attr_range_1_l" value="0"></div>
+                    <label>
+                        <button name="roll_r1_pb" value="&{template:attack} {{title=**@{range_1_name} (Pb)**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{agl}]]}} {{skill=[[1d@{ran}]]}} {{damage=[[@{range_1_nd}d@{range_1_dd}]]}} {{bonus=[[1]]}} {{target=[[?{Target Number|0}]]}}" type="roll">PB</button>
+                        <button name="roll_r1_s" value="&{template:attack} {{title=**@{range_1_name} (S)**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{agl}]]}} {{skill=[[1d@{ran}]]}} {{damage=[[@{range_1_nd}d@{range_1_dd}]]}} {{bonus=[[0]]}} {{target=[[?{Target Number|0}]]}}" type="roll">S</button>
+                        <button name="roll_r1_m" value="&{template:attack} {{title=**@{range_1_name} (M)**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{agl}]]}} {{skill=[[1d@{ran}]]}} {{damage=[[@{range_1_nd}d@{range_1_dd}]]}} {{bonus=[[1]]}} {{target=[[?{Target Number|0}]]}}" type="roll">M</button>
+                        <button name="roll_r1_l" value="&{template:attack} {{title=**@{range_1_name} (L)**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d@{agl}]]}} {{skill=[[1d@{ran}]]}} {{damage=[[@{range_1_nd}d@{range_1_dd}]]}} {{bonus=[[2]]}} {{target=[[?{Target Number|0}]]}}" type="roll">L</button>
+                    </label>
+                </div>
+                
+                
+            </div>
+            <h4>
+                Melee
+            </h4>
+            <div class="sheet-melee">
+                <div class="sheet-melee-1">
+                    <label><input type="text" name="attr_melee_1_name" value=""></label>
+                    <div class="row"><label>Dmg: </label> <input type="number" name="attr_melee_1_nd" min="0" value="1"> <label>d</label><input type="number" name="attr_melee_dd" min="4" step="2" max="12" value="4"></div>
+                    <div class="row"><button name="roll_melee_1" value="&{template:attack} {{title=**@{melee_1_name}**}} {{core=[[1d(2*(5-(@{wound}+@{stun})+1))]]}} {{attribute=[[1d?{Choose Attribute|Strength,@{str}|Agility,@{agl}}]]}} {{skill=[[1d@{fig}]]}} {{damage=[[@{melee_1_nd}d@{melee_dd}]]}} {{bonus=[[1d?{Choose Damage Attribute|Agility,@{agl}|Strength,@{str}|None,0}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Attack</button></div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <rolltemplate class="sheet-rolltemplate-card">
+        <div class="sheet-template-container card-block">
+            <div class="sheet-template-header" color="white">{{title}}</div>
+            <div class="sheet-container">
+               
+                <div class="sheet-template-row"><span><b>Core: </b></span>{{core}}{{#rollBetween() core target 13}}<span>Success!{{/rollBetween() core target 13}}</div>
+                <div class="sheet-template-row"><span><b>Atrribute: </b></span>{{attribute}}{{#rollBetween() attribute target 13}}<span>Success!{{/rollBetween() attribute target 13}}</div>
+                <div class="sheet-template-row"><span><b>Skill: </b></span>{{skill}}{{#rollBetween() skill target 13}}<span>Success!{{/rollBetween() skill target 13}}</div>
+                <div class="sheet-template-row"><span><b>Target: </b></span>{{target}}</div>
+            </div>
+        </div>
+    </rolltemplate>
+
+    <rolltemplate class="sheet-rolltemplate-attack">
+        <div class="sheet-template-container card-block">
+            <div class="sheet-template-header" color="white">{{title}}</div>
+            <div class="sheet-container">
+               
+                <div class="sheet-template-row"><span><b>Core: </b></span>{{core}}{{#rollBetween() core target 13}}<span>Success!{{/rollBetween() core target 13}}</div>
+                <div class="sheet-template-row"><span><b>Atrribute: </b></span>{{attribute}}{{#rollBetween() attribute target 13}}<span>Success!{{/rollBetween() attribute target 13}}</div>
+                <div class="sheet-template-row"><span><b>Skill: </b></span>{{skill}}{{#rollBetween() skill target 13}}<span>Success!{{/rollBetween() skill target 13}}</div>
+                <div class="sheet-template-row"><span><b>Bonus: </b></span>{{bonus}}</div>
+                <div class="sheet-template-row"><span><b>Damage: </b></span>{{damage}}</div> 
+                <div class="sheet-template-row"><span><b>Target: </b></span>{{target}}</div>
+            </div>
+        </div>
+    </rolltemplate>
+
+    <rolltemplate class="sheet-rolltemplate-init">
+        <dive class="sheet-tamplate-container card-block">
+            <div class="sheet-container">
+                <div class="sheet-template-row"><span>Initiative: </span>{{Initiative}}</div>
+            </div>
+        </dive>
+    </rolltemplate>
+
+    <script>
+
+        const stats = ['str', 'agl', 'end', 'int', 'pre', 'for'];
+        stats.forEach(stat => {
+            on(`change:${stat} sheet:opened`, function () {
+                getAttrs([`${stat}`], v => {
+                
+                var newDie = parseInt(v[`${stat}`])||0;
+                newDie = newDie + 4;
+
+                if (newDie % 2 == 1) {
+                    newDie = newDie - 1;
+                }
+
+                setAttrs({
+                        [`${stat}_die`]: newDie
+                    })
+                })
+            }) ;  
+        });
+    
+
+
+        function calcDie(skillPoints, attr) {
+        
+            var newDie = Math.floor((parseInt(skillPoints) + 4));
+
+            if (newDie % 2 == 1) {
+                newDie = newDie - 1;
+            }
+
+            
+            var updateDie = {};
+            update[attr + "_die"] = newDie;
+        }
+
+        function getResult(core, attribute, skill, target) {
+            var success = 0;
+
+            if (parseInt(core) > parseInt(target)) success++;
+            if (parseInt(attribute) > parseInt(target)) success++;
+            if (parseInt(skill) > parseInt(target)) success++;
+
+            if (success == 1) {
+                return "Partial Success!";
+            }
+            else if (success >= 2) {
+                return "("+success+") Successes!"
+            }
+            else {
+                return "Failure!"
+            }
+        }
+    </script>
