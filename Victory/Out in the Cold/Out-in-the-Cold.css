@@ -2,12 +2,12 @@
     display: grid;
     grid-template-columns: 33% 34% 33%;
     grid-template-rows: 8% 30% 15% 15% 22% 10%;
-    grid-template-areas: "name name player            "
-                        "attributes skills hp         "
-                        "initiative skills momentum   "
-                        "lucky skills complication    "
-                        "weapons skills languages     "
-                        "weapons skills exp           ";
+    grid-template-areas: "logo name player            "
+                        "hp attributes skills         "
+                        "momentum initiative skills   "
+                        "complication lucky skills    "
+                        "languages weapons skills     "
+                        "exp weapons skills           ";
 }
 
 .ui-dialog .charsheet button[type=roll]::before {
@@ -149,11 +149,24 @@
     font-size: 13px!important;
 }
 
+.charsheet button {
+    max-width: 85%;
+    font-size: 20px!important;
+    height: 20px!important;
+}
+
 .charsheet .sheet-ranged-1 {
     align-items: center;
 }
 
+.charsheet select {
+    width: 46px;
+    float: right;
+}
 
+.charsheet .ui-dialog .ui-dialog-titlebar-close span {
+    display: none;
+}
 
 
 .sheet-rolltemplate-card .sheet-template-container {
@@ -202,7 +215,7 @@
 }
 
 .sheet-rolltemplate-card .sheet-template-row {
-    height: 100%;
+    height: 25px;
     padding: 5px;
 }
 
@@ -256,7 +269,7 @@
 }
 
 .sheet-rolltemplate-attack .sheet-template-row {
-    height: 100%;
+    height: 25px;
     padding: 5px;
 }
 
@@ -317,6 +330,11 @@
 
 .sheet-rolltemplate-defense .sheet-template-row:nth-child(odd) {
     background-color: rgba(217, 217, 214,1);
+}
+
+.img {
+    width: auto;
+    max-height: 30%;
 }
 
 
