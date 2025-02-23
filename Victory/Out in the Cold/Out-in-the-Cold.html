@@ -27,10 +27,9 @@
             <h3>Health</h3>
             <label>Wound<input type="number" name="attr_wound" id="wound" min="0" max="5" value="0"></input></label>
             <label>Stun<input type="number" name="attr_stun" id="stun" min="0" max="5" value="0"></input></label>
-            <label>Core Die: 1d <span class="inline" name="attr_core" title="@{core}"></span></label>
+            <span class="core_diedisplay">Core Die: 1d<span class="inline" name="attr_core" title="@{coredie}"></span><input name="attr_core" type="hidden" value=12></span>
             <label></label>
             <label>Stress: 1d<select name="attr_stress" title="@{core_atr_sts}"><option value=4 selected="selected">4</option><option value=6>6</option><option value=8>8</option><option value=10>10</option><option value=12>12</option></select></label>
-            <input name="attr_core" id="die" type="hidden" value=12>
 
         </div>
         <div class="sheet-lucky sheet-block">
@@ -78,10 +77,9 @@
         </div>
         <div class="sheet-languages sheet-block">
             <h3>Languages</h3>
-            <div><input type="text" name="attr_lang_1" value=""></input></div>
-            <div><input type="text" name="attr_lang_2" value=""></input></div>
-            <div><input type="text" name="attr_lang_3" value=""></input></div>
-            <div><input type="text" name="attr_lang_4" value=""></input></div>
+            <fieldset class="repeating_language-1">
+                <input type="text" name="attr_language">
+            </fieldset>
         </div>
 
         <div class="sheet-skills sheet-block"> 
@@ -160,11 +158,11 @@
             <div class="sheet-template-header" color="white">{{title}}</div>
             <div class="sheet-container">
                
-                <div class="sheet-template-row"><span><b>Core: </b></span>{{core}}{{#rollBetween() core target 13}}<span>Success!{{/rollBetween() core target 13}}</div>
-                <div class="sheet-template-row"><span><b>Atrribute: </b></span>{{attribute}}{{#rollBetween() attribute target 13}}<span>Success!{{/rollBetween() attribute target 13}}</div>
-                <div class="sheet-template-row"><span><b>Skill: </b></span>{{skill}}{{#rollBetween() skill target 13}}<span>Success!{{/rollBetween() skill target 13}}</div>
-                <div class="sheet-template-row"><span><b>Damage: </b></span>{{damage}}</div> 
-                <div class="sheet-template-row"><span><b>Target: </b></span>{{target}}</div>
+                <div class="sheet-template-row"><span><b>Core: </b></span>{{core}} vs {{target}}{{#rollBetween() core target 13}}<span>Success!{{/rollBetween() core target 13}}</div>
+                <div class="sheet-template-row"><span><b>Atrribute: </b></span>{{attribute}} vs {{target}}{{#rollBetween() attribute target 13}}<span>Success!{{/rollBetween() attribute target 13}}</div>
+                <div class="sheet-template-row"><span><b>Skill: </b></span>{{skill}} vs {{target}}{{#rollBetween() skill target 13}}<span>Success!{{/rollBetween() skill target 13}}</div>
+                <div class="sheet-template-row"><span><b>Damage: </b></span>{{damage}}</div>
+                <div class="sheet-template-row"><span><b>Target: </b></span>{{target}}</div> 
             </div>
         </div>
     </rolltemplate>
@@ -188,57 +186,18 @@
         </dive>
     </rolltemplate>
 
-    <script>
+    <script type="text/worker">
 
-        const stats = ['str', 'agl', 'end', 'int', 'pre', 'for'];
-        stats.forEach(stat => {
-            on(`change:${stat} sheet:opened`, function () {
-                getAttrs([`${stat}`], v => {
-                
-                var newDie = parseInt(v[`${stat}`])||0;
-                newDie = newDie + 4;
+        on("change:wound change:stun sheet:opened", function() {
+            getAttrs(["wound", "stun"], function(values) {
+                let stuns = parseInt(values.stun)||0;
+                let wounds = parseInt(values.wound)||0;
+                let die = (2*(6-(wounds+stuns)));
 
-                if (newDie % 2 == 1) {
-                    newDie = newDie - 1;
-                }
-
+                if (die == 2) die = 0;
                 setAttrs({
-                        [`${stat}_die`]: newDie
-                    })
-                })
-            }) ;  
+                    "core": die
+                });
+            });
         });
-    
-
-
-        function calcDie(skillPoints, attr) {
-        
-            var newDie = Math.floor((parseInt(skillPoints) + 4));
-
-            if (newDie % 2 == 1) {
-                newDie = newDie - 1;
-            }
-
-            
-            var updateDie = {};
-            update[attr + "_die"] = newDie;
-        }
-
-        function getResult(core, attribute, skill, target) {
-            var success = 0;
-
-            if (parseInt(core) > parseInt(target)) success++;
-            if (parseInt(attribute) > parseInt(target)) success++;
-            if (parseInt(skill) > parseInt(target)) success++;
-
-            if (success == 1) {
-                return "Partial Success!";
-            }
-            else if (success >= 2) {
-                return "("+success+") Successes!"
-            }
-            else {
-                return "Failure!"
-            }
-        }
     </script>
