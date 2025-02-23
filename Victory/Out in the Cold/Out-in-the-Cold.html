@@ -25,10 +25,12 @@
         </div>
         <div class="sheet-hp sheet-block">
             <h3>Health</h3>
-            <label>Wound<input type="number" name="attr_wound" min="0" max="5" value="0"></input></label>
-            <label>Stun<input type="number" name="attr_stun" min="0" max="5" value="0"></input></label>
+            <label>Wound<input type="number" name="attr_wound" id="wound" min="0" max="5" value="0"></input></label>
+            <label>Stun<input type="number" name="attr_stun" id="stun" min="0" max="5" value="0"></input></label>
+            <label>Core Die: 1d <span class="inline" name="attr_core" title="@{core}"></span></label>
             <label></label>
             <label>Stress: 1d<select name="attr_stress" title="@{core_atr_sts}"><option value=4 selected="selected">4</option><option value=6>6</option><option value=8>8</option><option value=10>10</option><option value=12>12</option></select></label>
+            <input name="attr_core" id="die" type="hidden" value=12>
 
         </div>
         <div class="sheet-lucky sheet-block">
