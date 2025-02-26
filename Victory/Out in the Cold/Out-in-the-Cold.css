@@ -23,6 +23,10 @@
     border-radius: 10px;
 }
 
+.charsheet div.sheet-logo {
+    border: none!important;
+}
+
 .charsheet div.sheet-name {
     grid-area: name;
     display: flex;
