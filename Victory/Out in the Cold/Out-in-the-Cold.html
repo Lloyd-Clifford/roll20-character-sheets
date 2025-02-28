@@ -21,6 +21,12 @@
         <div class="sheet-tabs sheet-block">
             <div class="sheet-whisper-toggle">
                 <input name="attr_whisper" type="checkbox" title="whisper rolls to gm" value="/w gm ">
+                <label>Saves: <button name="roll_phy_save" value="@{whisper} &{template:save} {{title=**Physical Save**}} {{core=[[1d@{core}]]}} {{attribute=[[1d@{end}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Physical</button><button name="roll_fort_save" value="@{whisper} &{template:save} {{title=**Mental Save**}} {{core=[[1d@{core}]]}} {{attribute=[[1d@{for}]]}} {{target=[[?{Target Number|0}]]}}" type="roll">Mental</button></label>
+                <!--
+                <button type="action" name="act_character" class="sheet-button0">Character</button>
+                <button type="action" name="act_inventory" class="sheet-button1">Inventory</button>
+                <button type="action" name="act_notes" class="sheet-button2">Details</button>
+                --->
             </div>
         </div>
         <div class="sheet-hp sheet-block">
@@ -184,6 +190,17 @@
                 <div class="sheet-template-row"><span>Initiative: </span>{{Initiative}}</div>
             </div>
         </dive>
+    </rolltemplate>
+
+    <rolltemplate class="sheet-rolltemplate-save">
+        <div class="sheet-template-container card-block">
+            <div class="sheet-container">
+                <div class="sheet-template-header" color="white">{{title}}</div>
+                <div class="sheet-template-row"><span><b>Core: </b></span>{{core}} vs {{target}}{{#rollBetween() core target 13}}<span>Success!{{/rollBetween() core target 13}}</div>
+                <div class="sheet-template-row"><span><b>Atrribute: </b></span>{{attribute}} vs {{target}}{{#rollBetween() attribute target 13}}<span>Success!{{/rollBetween() attribute target 13}}</div>
+                <div class="sheet-template-row"><span><b>Target: </b></span>{{target}}</div>
+            </div>
+        </div>
     </rolltemplate>
 
     <script type="text/worker">
